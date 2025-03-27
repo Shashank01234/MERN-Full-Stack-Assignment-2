@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Date and Time Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            gap: 20px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #dateDisplay, #timeDisplay {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="showDate()">show date</button>
+    <div id="dateDisplay"></div>
+
+    <button onclick="showTime()">show Time</button>
+    <div id="timeDisplay"></div>
+
+    <script>
+        function showDate() {
+            const today = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            const formattedDate = today.toLocaleDateString('en-GB', options)
+                .replace(/ /g, '/');
+            document.getElementById('dateDisplay').textContent = formattedDate;
+        }
+
+        function showTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'short', 
+                month: 'short', 
+                day: '2-digit', 
+                year: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                timeZoneName: 'long' 
+            };
+            const formattedTime = now.toLocaleString('en-US', options)
+                .replace(',', '')
+                .replace('GMT+', 'GMT+0530 (India Standard Time)');
+            document.getElementById('timeDisplay').textContent = formattedTime;
+        }
+    </script>
+</body>
+</html>
